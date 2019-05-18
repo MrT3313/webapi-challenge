@@ -44,7 +44,7 @@ const express = require('express');
         "description": "THis project is a test"
     }
     */
-   
+
     router.post("/", async (req,res) => {
         console.log("projectsRouter POST/")
         console.log(req.body)
@@ -79,7 +79,8 @@ router.delete('/:id', async (req,res) => {
     console.log("actionsRouter DELETE/:id")
 
     try {
-
+        const deletedProject = await Projects.remove(id)
+            res.status(204).json(deletedProject)
     } catch {
         res.status(500).json({ error: `Could not DELETE action ${id}`})
     }

@@ -88,11 +88,7 @@ const Actions = require('../data/helpers/actionModel');
 
         try {
             const deletedAction = await Actions.remove(id)
-            if (deletedAction) {
                 res.status(204).json(deletedAction)
-            } else{
-                res.status(204).json({ error: "please fix shape of deletedAction"})
-            }
         } catch {
             res.status(500).json({ error: `Could not DELETE action ${id}`})
         }
