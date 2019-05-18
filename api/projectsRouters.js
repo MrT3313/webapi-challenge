@@ -53,7 +53,17 @@ const express = require('express');
         }
     })
 // - PUT - //
+    router.put("/:id", async (req,res) => {
+        const { id } = req.params
+        console.log("projectsRouter PUT/:id")
 
+        try {
+            const editProject = await Projects.update(id, req.body)
+            res.status(200).json(editProject)
+        } catch {
+            res.status(500).json({ error: `Could not UPDATE project ${id}`})
+        }
+    })
 // - DELETE - //
 
 // EXPORTS

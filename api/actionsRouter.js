@@ -36,7 +36,7 @@ const Actions = require('../data/helpers/actionModel');
     });
 // - POST - //
     router.post("/:id", async (req,res) => {
-        console.log("actionsRouter POST/")
+        console.log("actionsRouter POST/:id")
         const { id } = req.params
         const action = req.body
             action.project_id = parseInt(id)
@@ -46,7 +46,7 @@ const Actions = require('../data/helpers/actionModel');
             if (newAction) {
                 res.status(201).json(newAction)
             } else {
-                
+
                 res.status(400).json({ message: "please fix shape of newAction"})
             }
         } catch {
@@ -57,6 +57,18 @@ const Actions = require('../data/helpers/actionModel');
     })
 
 // - PUT - //
+    router.put("/:id", async (req, res) => {
+        const { id } = req.params
+        console.log("actionsRouter PUT/:id")
+        console.log("REQ.body", req.body)
+        console.log("ID", id)
+        try {
+            const editAction = await Actions.update(id, req.body)
+            res.status(200).json(editAction)
+        } catch {
+            res.status(500).json({ error: `Could not UPDATE item ${id}`})
+        }
+    })
 
 // - DELETE - //
 
