@@ -15,9 +15,13 @@
     server.use(helmet())
 
 // Use Routes
+// Homepage Routing
+    server.get('/', (req, res) => {
+        res.json({ message: "Sprint Prep"})
+    });
+// Individual Routes
     server.use('/api/projects', projectRouter)
     server.use('/api/actions', actionsRouter)
-
 
 // EXPORT SERVER
     module.exports = server
