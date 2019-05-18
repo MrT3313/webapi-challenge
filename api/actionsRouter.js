@@ -35,6 +35,26 @@ const Actions = require('../data/helpers/actionModel');
         }
     });
 // - POST - //
+    router.post("/:id", async (req,res) => {
+        console.log("actionsRouter POST/")
+        const { id } = req.params
+        const action = req.body
+            action.project_id = parseInt(id)
+            console.log(action)
+        try {
+            const newAction = await Actions.insert(action)
+            if (newAction) {
+                res.status(201).json(newAction)
+            } else {
+                
+                res.status(400).json({ message: "please fix shape of newAction"})
+            }
+        } catch {
+            res
+                .status(500)
+                .json({ error: `Could not POST item`})
+        }
+    })
 
 // - PUT - //
 

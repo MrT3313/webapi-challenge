@@ -36,7 +36,22 @@ const express = require('express');
         }
     });
 // - POST - //
-
+    router.post("/", async (req,res) => {
+        console.log("projectsRouter POST/")
+        const project = req.body
+        try {
+            const newProject = await Actions.insert(project)
+            if (newProject) {
+                res.status(201).json(newProject)
+            } else {
+                res.status(400).json({ message: "please fix shape of newProject"})
+            }
+        } catch {
+            res
+                .status(500)
+                .json({ error: `Could not POST item`})
+        }
+    })
 // - PUT - //
 
 // - DELETE - //
