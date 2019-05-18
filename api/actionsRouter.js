@@ -35,12 +35,23 @@ const Actions = require('../data/helpers/actionModel');
         }
     });
 // - POST - //
+
+    /* 
+    Shape Accepted
+    {
+        "description": "HELLO",
+        "notes": "these are my hello notes"
+    }
+    */
+
     router.post("/:id", async (req,res) => {
         console.log("actionsRouter POST/:id")
         const { id } = req.params
         const action = req.body
+            console.log(action)    
             action.project_id = parseInt(id)
-            console.log(action)
+
+            console.log('FINAL ACTION for actionRouter POST', action)
         try {
             const newAction = await Actions.insert(action)
             if (newAction) {
@@ -66,11 +77,25 @@ const Actions = require('../data/helpers/actionModel');
             const editAction = await Actions.update(id, req.body)
             res.status(200).json(editAction)
         } catch {
-            res.status(500).json({ error: `Could not UPDATE item ${id}`})
+            res.status(500).json({ error: `Could not UPDATE action ${id}`})
         }
     })
 
 // - DELETE - //
+    router.delete('/:id', async (req,res) => {
+        const { id } = req.params
+        console.log("actionsRouter DELETE/:id")
 
+        try {
+            const deletedAction = await Actions.remove(id)
+            if (deletedAction) {
+                res.status(204).json(deletedAction)
+            } else{
+                res.status(204).json({ error: "please fix shape of deletedAction"})
+            }
+        } catch {
+            res.status(500).json({ error: `Could not DELETE action ${id}`})
+        }
+    })
 // EXPORTS
     module.exports = router
