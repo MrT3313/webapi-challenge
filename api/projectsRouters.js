@@ -40,8 +40,8 @@ const express = require('express');
     /* 
     Shape Accepted
     {
-        "name": "Newst of New Projects",
-        "description": "THis project is a test"
+        "name": "nameString here",
+        "description": "descriptionString here"
     }
     */
 
@@ -62,6 +62,15 @@ const express = require('express');
         }
     })
 // - PUT - //
+
+    /* 
+    Shape Accepted
+    {
+        "name": "nameString here",
+        "description": "descriptionString Here",
+        "completed": bool here
+    }
+    */
     router.put("/:id", async (req,res) => {
         const { id } = req.params
         console.log("projectsRouter PUT/:id")

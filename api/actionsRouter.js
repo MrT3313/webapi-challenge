@@ -39,8 +39,8 @@ const Actions = require('../data/helpers/actionModel');
     /* 
     Shape Accepted
     {
-        "description": "HELLO",
-        "notes": "these are my hello notes"
+        "description": "descriptionString here",
+        "notes": "notesString here"
     }
     */
 
@@ -68,6 +68,15 @@ const Actions = require('../data/helpers/actionModel');
     })
 
 // - PUT - //
+
+    /* 
+    Shape Accepted
+    {
+        "description": "descriptionString here",
+        "notes": "OMG - notesString here ",
+        "completed": boolHere
+    }
+    */
     router.put("/:id", async (req, res) => {
         const { id } = req.params
         console.log("actionsRouter PUT/:id")
