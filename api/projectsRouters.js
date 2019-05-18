@@ -1,8 +1,8 @@
 // IMPORTS
 const express = require('express');
 
-// DataBase
-    const db = require('../data/dbConfig');
+// Importing Models for DB
+    const Projects = require('../data/helpers/projectModel');
 
 // Router
     const router = express.Router();
@@ -11,7 +11,11 @@ const express = require('express');
     router.get("/", async (req, res) => {
         console.log("projectsRouter GET/ ")
         try {
-            const projects = await db.get()
+            console.log("HELLO")
+
+            const projects = await Projects.get()
+            console.log(projects)
+
             res.status(200).json(projects)
         } catch (err) {
             res
@@ -23,12 +27,12 @@ const express = require('express');
         console.log("projectsRouter GET/:id ")
         const { id } = req.params
         try {
-            const project = await db.get(id)
+            const project = await Projects.get(id)
             res.status(200).json(project)
         } catch (err) {
             res
                 .status(500)
-                .json({ error: `The project information for id# ${id}could not be found`})
+                .json({ error: `The project information for id# ${id} could not be found`})
         }
     });
 // - POST - //

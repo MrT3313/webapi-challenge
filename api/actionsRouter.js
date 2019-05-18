@@ -1,8 +1,8 @@
 // IMPORTS
     const express = require('express');
 
-// DataBase
-    const db = require('../data/dbConfig');
+// Importing Models for DB
+const Actions = require('../data/helpers/actionModel');
 
 // Router
     const router = express.Router();
@@ -10,8 +10,11 @@
 // - GET - //
     router.get("/", async (req, res) => {
         console.log("actionsRouter GET/ ")
+        // TEST
+            // res.json({ message: "THE GET WORKED!"})
+
         try {
-            const actions = await db.get()
+            const actions = await Actions.get()
             res.status(200).json(actions)
         } catch (err) {
             res
@@ -23,7 +26,7 @@
         console.log("actionsRouter GET/:id ")
         const { id } = req.params
         try {
-            const action = await db.get(id)
+            const action = await Actions.get(id)
             res.status(200).json(action)
         } catch (err) {
             res

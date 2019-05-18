@@ -5,7 +5,7 @@
     const helmet = require('helmet')
 
 // -- ROUTERS -- //
-    const projectRouter = require('./projectsRouters')
+    const projectsRouter = require('./projectsRouters')
     const actionsRouter = require('./actionsRouter')
 
 // -- SERVER -- //
@@ -20,7 +20,7 @@
         res.json({ message: "Sprint Prep"})
     });
 // Individual Routes
-    server.use('/api/projects', projectRouter)
+    server.use('/api/projects', projectsRouter)
     server.use('/api/actions', actionsRouter)
 
 // EXPORT SERVER
