@@ -26,8 +26,9 @@ Demonstrate your understanding of this Sprint's concepts by answering the follow
 
 - [ ] Mention two parts of Express that you learned about this week.
         Middleware / Server-Side Routing
+
 - [ ] Describe Middleware?
-        An array of functions that get executed in the order they are introduced into the server code. precede the actual request / action of the server
+        An array of functions that gets executed in the order they are introduced into the server code. precede the actual request / action of the server
 
 - [ ] Describe a Resource?
         1. everything is a resource

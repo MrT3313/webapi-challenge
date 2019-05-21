@@ -1,7 +1,7 @@
 // IMPORTS
 const express = require('express');
 
-// Importing Models for DB
+// Importing Methods for DB
     const Projects = require('../data/helpers/projectModel');
 
 // Router
@@ -33,6 +33,20 @@ const express = require('express');
             res
                 .status(500)
                 .json({ error: `The project information for id# ${id} could not be found`})
+        }
+    });
+    router.get("/:id/actions", async (req, res) => {
+        console.log("projectsRouter GET/:id/actions")
+        const { id } = req.params
+        
+        
+        try {
+            const projectActions = await Projects.getProjectActions(id)
+            res.status(200).json(projectActions)
+        } catch (err) {
+            res
+                .status(500)
+                .json({ error: `The project actions for id# ${id} could not be found`})
         }
     });
 // - POST - //

@@ -57,7 +57,6 @@ const Actions = require('../data/helpers/actionModel');
             if (newAction) {
                 res.status(201).json(newAction)
             } else {
-
                 res.status(400).json({ message: "please fix shape of newAction"})
             }
         } catch {
